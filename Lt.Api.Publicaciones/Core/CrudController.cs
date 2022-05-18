@@ -47,14 +47,14 @@ namespace Lt.Api.Publicaciones.Core
         {
             var entity = await _dataContext.Set<T>().Where(p => p.Id == id).FirstOrDefaultAsync();
 
-            if(entity!= null )
+            if(entity != null )
             {
                 _dataContext.Set<T>().Remove(entity);
                 _dataContext.SaveChanges();
-                return Ok(new { isDeleted = false, message = "No se borro", Status = 200 });
+                return Ok(new { isDeleted = false, message = "Borrado", Status = 200 });
             }
             
-            return Ok(new { isDeleted = true, message = "Borrado", Status = 200 });
+            return Ok(new { isDeleted = true, message = "No se borro", Status = 200 });
         }
 
         [HttpPut("Update")]
