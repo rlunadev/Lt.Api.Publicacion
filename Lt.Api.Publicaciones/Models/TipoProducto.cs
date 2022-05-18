@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Lt.Api.Publicaciones.Core;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Lt.Api.Publicaciones.Models
 {
-    public class TipoProducto
+    public class TipoProducto : EntityBase
     {
-        public int Id { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
 

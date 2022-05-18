@@ -2,12 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Lt.Api.Publicaciones.Core;
 
 namespace Lt.Api.Publicaciones.Models
 {
-    public class GrupoSuscripcion
+    public class GrupoSuscripcion : EntityBase
     {
-        public int Id { get; set; }
         public string Nombre { get; set; }
         public string Detalle { get; set; }
         public bool Status { get; set; }

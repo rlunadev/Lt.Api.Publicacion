@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Lt.Api.Publicaciones.Core;
 
 namespace Lt.Api.Publicaciones.Models
 {
-    public class Producto
+    public class Producto : EntityBase
     {
-        public int Id { get; set; }
         public string Nombre { get; set; }
         public string Detalle { get; set; }
         [Column(TypeName = "decimal(18,2)")]

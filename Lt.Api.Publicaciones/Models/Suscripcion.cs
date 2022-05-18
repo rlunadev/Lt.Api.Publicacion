@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Lt.Api.Publicaciones.Core;
 
 namespace Lt.Api.Publicaciones.Models
 {
-    public class Suscripcion
+    public class Suscripcion : EntityBase
     {
-        public int Id { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public double Adelanto { get; set; }
         [Column(TypeName = "decimal(18,2)")]
