@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Lt.Api.Publicaciones.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,11 +22,43 @@ namespace Lt.Api.Publicaciones.Controllers
             _dataContext = dataContext;
         }
 
+        [HttpPost("Save")]
+        public async Task<IActionResult> Save(Persona persona)
+        {
+            _dataContext.Add(persona);
+            await _dataContext.SaveChangesAsync();
+            return Ok(new { isDeleted = true, message = "Guardado", Status = 200 });
+        }
+
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var personas = await _dataContext.Personas.ToListAsync();
             return Ok(personas);
+        }
+
+        [HttpGet("Get/{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var persona = await _dataContext.Personas.Where(p=>p.Id == id).FirstOrDefaultAsync();
+            return Ok(persona);
+        }
+
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var persona = await _dataContext.Personas.Where(p => p.Id == id).FirstOrDefaultAsync();
+            _dataContext.Personas.Remove(persona);
+            _dataContext.SaveChanges();
+            return Ok(new { isDeleted = true, message = "Borrado", Status = 200});
+        }
+
+        [HttpPut("Update")]
+        public async Task<IActionResult> Delete(Persona persona)
+        {
+            _dataContext.Personas.Update(persona);
+            _dataContext.SaveChanges();
+            return Ok(new { isDeleted = true, message = "Actualizado", Status = 500 });
         }
 
     }
